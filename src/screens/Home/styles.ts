@@ -7,7 +7,6 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     width: '100%',
-    // verticalAlign: 'center',
   },
   heading: {
     justifyContent: 'center',
@@ -16,7 +15,7 @@ export const styles = StyleSheet.create({
     marginBottom: 20,
   },
   headingText: {
-    fontSize: 12,
+    fontSize: 20,
     color: theme.colors.heading,
   }
 });

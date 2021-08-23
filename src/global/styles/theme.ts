@@ -1,7 +1,11 @@
 export const theme = {
   colors: {
-    primary: '#E51C44',
-    secondary: '#0A1033',
+    primary: '#2a9d8f',
+    secondary: '#264653',
+    yellow: '#e9c46a',
+    orange: '#f4a261',
+    red: '#e76f51',
+
     overlay: 'rgba(0,0,0,0.7)',
     highlight: '#ABB1CC',
     heading: '#DDE3F0',
