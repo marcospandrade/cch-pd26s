@@ -17,5 +17,13 @@ export const styles = StyleSheet.create({
   headingText: {
     fontSize: 20,
     color: theme.colors.heading,
+  },
+  button: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 200,
+    height: 50,
+    borderRadius: 30,
+    elevation: 10,
   }
 });

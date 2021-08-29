@@ -28,6 +28,7 @@ export function Home() {
 
       <View>
         <Button
+          style={styles.button}
           color={theme.colors.secondary}
           icon="account-question"
           loading={loading}
