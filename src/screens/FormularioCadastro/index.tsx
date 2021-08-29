@@ -6,6 +6,7 @@ import {
   Alert
 } from 'react-native';
 import Slider from '@react-native-community/slider';
+import AwesomeAlert from 'react-native-awesome-alerts';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Picker } from '@react-native-picker/picker';
 import { Avatar, Button, Card, Title, Paragraph, TextInput, Switch, Text, ToggleButton } from 'react-native-paper';
@@ -13,6 +14,14 @@ import { useNavigation } from '@react-navigation/native';
 
 import { theme } from '../../global/styles/theme';
 import { styles } from './styles';
+
+export type pessoaCadastro = {
+  name: String,
+  age: number,
+  sex: String,
+  isStudant: boolean,
+  limit: String
+}
 
 export function FormularioCadastro() {
   const navigation = useNavigation();
@@ -23,6 +32,11 @@ export function FormularioCadastro() {
   const [estudante, setEstudante] = useState(false);
   const [limiteDesejado, setLimiteDesejado] = useState("0,00");
   let limiteControl = 0;
+  let message: string = "";
+
+  const [cadastrante, setCadastrante] = useState<pessoaCadastro>({} as pessoaCadastro);
+  const [sucessModal, setSucessModal] = useState(false);
+  const [failModal, setFailModal] = useState(false);
 
   const onToggleSwitch = () => setEstudante(!estudante);
 
@@ -32,8 +46,45 @@ export function FormularioCadastro() {
     setLimiteDesejado(valorFormatado.replace(".", ",").toString());
   }
 
-  function handleAbrirConta() {
+  function hideAlert(option: String) {
+    if (option === "sucess") {
+      setSucessModal(false);
+      navigation.navigate('Dashboard');
+    } else {
+      setFailModal(false);
+    }
+  }
 
+  function loadPessoaCadastro() {
+    setLoading(true);
+    if (nome === '' || idade === '' || sexo === '' || limiteDesejado === "0,00") {
+      setFailModal(true);
+      setLoading(false);
+    } else {
+      let obj: pessoaCadastro = {
+        name: nome,
+        age: Number(idade),
+        sex: sexo,
+        isStudant: estudante,
+        limit: limiteDesejado
+      }
+      setCadastrante(obj);
+      handleAbrirConta(cadastrante);
+    }
+  }
+
+  function handleAbrirConta(obj: pessoaCadastro) {
+    //request api
+    message =
+      "Dados da conta aberta" +
+        "\n Nome: " + obj.name +
+        "\n Idade: " + obj.age +
+        "\n Sexo: " + obj.sex +
+        "\n É estudante:" + obj.isStudant ? "Sim" : "Não" +
+        "\n Limit: " + obj.limit
+
+    setSucessModal(true);
+    setLoading(false);
   }
 
   return (
@@ -93,7 +144,7 @@ export function FormularioCadastro() {
               </View>
 
               <View>
-                <Text>Saldo: R$ {limiteDesejado} </Text>
+                <Text>Limite: R$ {limiteDesejado} </Text>
                 <Slider
                   style={{ width: '105%', height: 60, marginLeft: -5 }}
                   minimumValue={0}
@@ -103,7 +154,7 @@ export function FormularioCadastro() {
                   onSlidingComplete={(value) => {
                     setTimeout(() => {
                       transformMoney(value)
-                    }, 200)
+                    }, 50)
                   }}
                 />
               </View>
@@ -118,8 +169,8 @@ export function FormularioCadastro() {
                 setLoading(true)
                 setTimeout(() => {
                   setLoading(false);
-                  Alert.alert('Cadastrado com sucesso!')
-                }, 2000)
+                  loadPessoaCadastro();
+                }, 1500)
               }}
             >
               Abrir conta
@@ -135,6 +186,43 @@ export function FormularioCadastro() {
             >
               Cancelar
             </Button>
+            <AwesomeAlert
+              show={sucessModal}
+              showProgress={false}
+              title="Sua conta foi aberta com sucesso!"
+              message={`Dados da conta aberta:
+                \n Nome: ${cadastrante.name}
+                \n Idade: ${cadastrante.age}
+                \n Sexo: ${cadastrante.sex}
+                \n É estudante: ${cadastrante.isStudant ? "Sim" : "Não"} 
+                \n Limite: ${cadastrante.limit}`}
+              closeOnTouchOutside={true}
+              closeOnHardwareBackPress={false}
+              showCancelButton={false}
+              showConfirmButton={true}
+              confirmText="Show de bola"
+              confirmButtonColor={theme.colors.primary}
+              onConfirmPressed={() => {
+                hideAlert("sucess");
+              }}
+            />
+
+            <AwesomeAlert
+              show={failModal}
+              showProgress={false}
+              title="Erro!"
+              message="Não foi possível abrir sua conta! Preencha todos os campos"
+              messageStyle={{ textAlign: "center" }}
+              closeOnTouchOutside={true}
+              closeOnHardwareBackPress={false}
+              showCancelButton={false}
+              showConfirmButton={true}
+              confirmText="OK, voltar para preenchimento"
+              confirmButtonColor={theme.colors.red}
+              onConfirmPressed={() => {
+                hideAlert("fail");
+              }}
+            />
           </Card.Content>
         </Card>
       </ScrollView>

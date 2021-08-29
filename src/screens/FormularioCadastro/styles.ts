@@ -18,8 +18,13 @@ export const styles = StyleSheet.create({
     margin: 20
   },
   cardTitle: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
+    textAlign: 'center',
     fontSize: 30,
-    marginBottom: 20
+    marginBottom: 20,
+    marginHorizontal: 25
   },
   inputsForm: {
     marginTop: 20,

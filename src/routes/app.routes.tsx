@@ -5,6 +5,7 @@ import { theme } from '../global/styles/theme';
 
 import { Home } from '../screens/Home';
 import { FormularioCadastro } from '../screens/FormularioCadastro';
+import { Dashboard } from '../screens/Dashboard';
 
 const { Navigator, Screen } = createStackNavigator();
 
@@ -27,6 +28,10 @@ export function AppRoutes() {
       <Screen
         name="FormularioCadastro"
         component={FormularioCadastro}
+      />
+      <Screen
+        name="Dashboard"
+        component={Dashboard}
       />
     </Navigator>
   );
