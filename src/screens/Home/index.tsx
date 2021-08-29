@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Text } from 'react-native-paper';
-import { useNavigation, useFocusEffect } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 
 import {
   View
