@@ -123,6 +123,7 @@ export function FormularioCadastro() {
                 />
               </View>
               <View>
+                <Text style={{fontWeight: "bold", marginTop: 20}}>Sexo: </Text>
                 <Picker
                   style={styles.picker}
                   selectedValue={sexo}
@@ -137,14 +138,15 @@ export function FormularioCadastro() {
               </View>
 
               <View style={styles.switchToggle}>
-                <Text>Estudante</Text>
+                <Text style={{fontWeight: "bold"}}>É estudante:   </Text>
                 <Switch
+                  style={{marginTop: -2}}
                   value={estudante}
                   onValueChange={onToggleSwitch} />
               </View>
 
               <View>
-                <Text>Limite: R$ {limiteDesejado} </Text>
+                <Text style={{fontWeight: "bold"}}>Limite: R$ {limiteDesejado} </Text>
                 <Slider
                   style={{ width: '105%', height: 60, marginLeft: -5 }}
                   minimumValue={0}

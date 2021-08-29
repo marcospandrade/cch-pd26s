@@ -8,21 +8,14 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     width: '100%',
   },
-  heading: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '100%',
-    marginBottom: 20,
-  },
   headingText: {
     fontSize: 20,
     color: theme.colors.heading,
   },
   button: {
+    marginTop: 20,
     alignItems: 'center',
     justifyContent: 'center',
-    width: 200,
-    height: 50,
     borderRadius: 30,
     elevation: 10,
   }

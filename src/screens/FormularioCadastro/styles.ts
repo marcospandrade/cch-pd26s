@@ -14,6 +14,7 @@ export const styles = StyleSheet.create({
   },
   cardFormulario: {
     textAlign: 'center',
+    borderRadius: 15,
     padding: 20,
     margin: 20
   },
@@ -33,7 +34,6 @@ export const styles = StyleSheet.create({
     marginBottom: 10,
   },
   picker: {
-    marginTop: 15,
     marginBottom: 20,
     marginLeft: -8,
     height: 50

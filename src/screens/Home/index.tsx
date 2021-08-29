@@ -22,23 +22,17 @@ export function Home() {
   }
   return (
     <View style={styles.container}>
-      <View style={styles.heading}>
-        <Text style={styles.headingText}>Seja bem-vindo ao Banco Pi!</Text>
-      </View>
-
-      <View>
-        <Button
-          style={styles.button}
-          color={theme.colors.secondary}
-          icon="account-question"
-          loading={loading}
-          mode="contained"
-          onPress={() => handlePressionButton()}
-        >
-          Entrar
-        </Button>
-      </View>
-
+      <Text style={styles.headingText}>Seja bem-vindo ao Banco Pi!</Text>
+      <Button
+        style={styles.button}
+        color={theme.colors.secondary}
+        icon="account-question"
+        loading={loading}
+        mode="contained"
+        onPress={() => handlePressionButton()}
+      >
+        Entrar
+      </Button>
     </View >
   );
 }
